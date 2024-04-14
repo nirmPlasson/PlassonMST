@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="PlassonMST.Views.PlassonMSTView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:converters="clr-namespace:PlassonMST.Converters"
+			 xmlns:c="clr-namespace:BenjaminGale.Controls"
+			 xmlns:local="clr-namespace:PlassonMST.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+
+		<Label Grid.Row="0" Grid.Column="0" Content="_Filter by status:" Target="{Binding ElementName=filterComboBox}" VerticalAlignment="Center"/>
+		<ComboBox Grid.Row="0" Grid.Column="1" x:Name="filterComboBox" ItemsSource="{Binding SupportedStatuses}" SelectedItem="{Binding FilterStatus, Mode=TwoWay}" Margin="5" MinWidth="50" MinHeight="30" VerticalAlignment="Stretch" VerticalContentAlignment="Center">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<Image Source="{Binding IconResource, Converter={converters:StaticResourceConverter}}" Height="16" Width="16" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<Button Grid.Row="0" Grid.Column="2" Content="_Clear" Command="{Binding ClearFilterCommand}" Margin="5"/>
+
+		<Button Grid.Row="0" Grid.Column="4" Command="{Binding Source={x:Static c:ModalContentCommands.ShowModalContent}}" Margin="5">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="_Status Management" Target="{Binding ElementName=statusManagementImage}" Margin="0"/>
+				<Image x:Name="statusManagementImage" Source="{StaticResource settingsDrawingImage}" Height="16" Width="16" Margin="0"/>
+			</StackPanel>
+		</Button>
+
+		<ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredMachines.View}" SelectedItem="{Binding SelectedMachine, Mode=TwoWay}" SelectionMode="Single" Margin="3">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<local:MachineView Margin="5" DataContext="{Binding}"/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+		</ListBox>
+
+		<ContentControl Grid.Row="0" Grid.Column="5" Grid.RowSpan="3" MaxWidth="400" Margin="5">
+			<local:EditableMachineView Margin="5" DataContext="{Binding EditableMachine}"/>
+		</ContentControl>
+	</Grid>
+</UserControl>

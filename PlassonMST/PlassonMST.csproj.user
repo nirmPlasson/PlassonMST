@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\MachineView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PlassonMSTView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\StatusManagement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PlassonMSTShell.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EditableMachineView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PlassonMSTView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StatusManagement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Update="Resources\FeatherIcons.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Update="Resources\WpfResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Update="Views\MachineView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
